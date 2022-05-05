@@ -2,9 +2,22 @@ package main
 
 import (
 	"fmt"
+	"strconv"
+	"strings"
 )
 
+func ConvertToIntAndSplit(x string) []uint64 {
+	var slInt []uint64
+	s := strings.Split(x, "")
+	for i := 0; i < len(s); i++ {
+		u, _ := strconv.ParseUint(s[i], 10, 64)
+		slInt = append(slInt, u)
+	}
+	return slInt
+}
+
 func main() {
+	//var str string
 	var sum float64
 	var cinquentaDigitos = make([]float64, 100)
 	cinquentaDigitos = []float64{37107287533902102798797998220837590246510135740250,
@@ -110,12 +123,11 @@ func main() {
 
 	for i := 0; i < 100; i++ {
 		sum += cinquentaDigitos[i]
-		//fmt.Println(sum)
+
 	}
 
-	//aux := string(sum)
-	//answer := strings.Split(aux, "")
-	//fmt.Printf("%.0f\n", sum)
-	//result := splitFloat(sum)[:10]
-	fmt.Println(sum)
+	result := strconv.FormatFloat(sum, 'f', -1, 64)[:10]
+	//fmt.Printf("%v, %T\n", result, result)
+	fmt.Println(ConvertToIntAndSplit(result))
+
 }
