@@ -14,7 +14,6 @@ package main
 
 import (
 	"fmt"
-	"strings"
 )
 
 /*
@@ -29,12 +28,21 @@ func LetrasFaltantes(sequence string) {
 
 */
 
-func LetrasFaltantes(sequence string) {
-	x := strings.Split(sequence, "")
+func LetrasFaltantes(sequence string) []byte {
+	x := []byte(sequence)
+	fmt.Println(x)
+	var z []byte
+
 	for i := 0; i < len(x); i++ {
-		fmt.Printf("%x\n", x[i])
+		if x[i+1]-x[i] > 1 {
+			z = x[:i]
+
+			z = append(z, x[i]+1)
+
+		}
 
 	}
+	return z
 }
 func main() {
 
