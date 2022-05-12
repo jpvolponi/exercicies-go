@@ -28,24 +28,30 @@ func LetrasFaltantes(sequence string) {
 
 */
 
-func LetrasFaltantes(sequence string) []byte {
-	x := []byte(sequence)
-	fmt.Println(x)
-	var z []byte
+func LetrasFaltantes(sequence string) string {
+	word := []byte(sequence)
+	temp := []byte(sequence)
+	var result = make([]byte, len(word)+1)
 
-	for i := 0; i < len(x); i++ {
-		if x[i+1]-x[i] > 1 {
-			z = x[:i]
+	for i := 0; i < len(word)-1; i++ {
 
-			z = append(z, x[i]+1)
+		if word[i+1]-word[i] > 1 {
+			//result = word[:i+1]
+
+			result = append(word[:i+1], word[i]+1)
+			fmt.Println("debug result: ", result)
+			result = append(result, temp[i+1:len(temp)]...)
+			word = result
+			fmt.Println("debug word: ", word)
+			fmt.Println("debug result: ", result)
 
 		}
 
 	}
-	return z
+	return string(result)
 }
 func main() {
 
-	LetrasFaltantes("abcf")
+	fmt.Println(LetrasFaltantes("abcf"))
 
 }
